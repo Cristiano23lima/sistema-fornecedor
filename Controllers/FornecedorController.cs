@@ -43,6 +43,7 @@ namespace sistema_fornecedor.Controllers
             return View(fornecedores);
         }
 
+
         // GET: Fornecedor/Create
         public IActionResult Create()
         {
@@ -66,19 +67,19 @@ namespace sistema_fornecedor.Controllers
         }
 
         // GET: Fornecedor/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var fornecedores = await _context.Fornecedores.FindAsync(id);
+            var fornecedores = _context.Fornecedores.Find(id);
             if (fornecedores == null)
             {
                 return NotFound();
             }
-            return View(fornecedores);
+            return PartialView(fornecedores);
         }
 
         // POST: Fornecedor/Edit/5

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,16 @@ namespace sistema_fornecedor.Components
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
-            var items = await GetItemsAsync(id);
-            return View(items);
+            // Console.WriteLine(id);
+            // // var items = await GetItemsAsync(id);
+            if (id == 0)
+            {
+                Console.WriteLine("Id veio nulo");
+                return View();
+            }
+
+
+            return View(await db.Fornecedores.FirstOrDefaultAsync(data => data.Id == id));
         }
 
         private Task<List<Fornecedores>> GetItemsAsync(int id) => db.Fornecedores.Where(a => a.Id == id).ToListAsync();
