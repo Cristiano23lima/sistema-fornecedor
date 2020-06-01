@@ -1,0 +1,8 @@
+@model IEnumerable<Fornecedores>
+  <h1>Meu fornecedor</h1>
+  <ul>
+    @foreach (var item in Model) {
+      <li>@item.Id</li>
+      <li>@item.Nome</li>
+    }
+  </ul>
